@@ -10,20 +10,25 @@
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <!-- Шапка сайта -->
-    <header>
-        <a href="/">LDSK_D3X1</a>
-        <!-- Главное меню навигации -->
-        <nav>
-            <ul>
-                <li><a href="index.html">Главная</a></li>
-                <li><a href="about.html">О нас</a></li>
-                <li><a href="contacts.html">Контакты</a></li>
-            </ul>
-        </nav>
-    </header>
     <!-- Уникальное основное содержимое страницы -->
     <main>
+        <button class="theme-toggle" type="button" aria-pressed="false">Тема</button>
+        <script defer>
+            const KEY = 'theme', btn = document.querySelector('.theme-toggle');
+            const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
+            // Автовыбор: системная тема или сохранённый выбор пользователя
+            if (localStorage.getItem(KEY) === 'dark' || (!localStorage.getItem(KEY) &&
+                prefersDark)) {
+                document.body.classList.add('theme-dark');
+                btn?.setAttribute('aria-pressed', 'true');
+            }
+            // Переключение по кнопке с сохранением в localStorage
+            btn?.addEventListener('click', () => {
+                const isDark = document.body.classList.toggle('theme-dark');
+                btn.setAttribute('aria-pressed', String(isDark));
+                localStorage.setItem(KEY, isDark ? 'dark' : 'light');
+            });
+        </script>
         <h1>Добро пожаловать на наш сайт!</h1>
         <!-- Секция 1 с якорем -->
         <section id="services">
@@ -35,6 +40,18 @@
         <section id="portfolio">
             <h2>Портфолио</h2>
             <p>Примеры наших работ...</p>
+            <img src="img/card-640.jpg"
+                 alt="Проект: макет мобильного приложения"
+                 width="640" height="360"
+                 loading="lazy" decoding="async">
+            <!-- Добавьте субтитры через <track> (WebVTT); poster — превью-кадр -->
+            <video class="media" controls preload="metadata" playsinline
+                   width="960" height="540" poster="video/poster.jpg">
+                <source src="video/teaser-1080.mp4" type="video/mp4">
+                <!-- основной
+        формат -->
+            </video>
+
         </section>
         <!-- Секция 3 с якорем -->
         <section id="contacts">
@@ -61,14 +78,14 @@
             <label for="email">E-mail</label>
             <input id="email" name="email" type="email" required
                    autocomplete="email">
-            
+
             <label for="phone">Телефон</label>
             <input id="phone" name="phone" type="tel" inputmode="tel"
                    autocomplete="tel"
                    aria-describedby="phoneHelp" placeholder="+7 (___) ___-__-__"
                    required pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$">
             <small id="phoneHelp">Формат: +7 (900) 000-00-00</small>
-            
+
             <label for="date">Дата</label>
             <input id="date" name="date" type="date">
             <label for="topic">Тема</label>
