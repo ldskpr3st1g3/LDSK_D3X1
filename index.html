@@ -40,17 +40,20 @@
         <section id="portfolio">
             <h2>Портфолио</h2>
             <p>Примеры наших работ...</p>
-            <img src="img/card-640.jpg"
+            <img src="rickroll.jpg"
                  alt="Проект: макет мобильного приложения"
-                 width="640" height="360"
+                 width="440" height="360"
                  loading="lazy" decoding="async">
-            <!-- Добавьте субтитры через <track> (WebVTT); poster — превью-кадр -->
-            <video class="media" controls preload="metadata" playsinline
-                   width="960" height="540" poster="video/poster.jpg">
-                <source src="video/teaser-1080.mp4" type="video/mp4">
-                <!-- основной
-        формат -->
-            </video>
+            <!-- Вставка с Rutube; замените XXXXXXXXXXXX на ID ролика -->
+            <div class="media">
+                <iframe
+                    src="https://rutube.ru/play/embed/52abc1d26485c553fed64b75a8eb85b0/"
+                    title="Видео о проекте" 
+                    <!-- важно для доступности -->
+                    allow="autoplay; encrypted-media; picture-in-picture; web-share"
+                    allowfullscreen loading="lazy">
+                </iframe>
+            </div>
 
         </section>
         <!-- Секция 3 с якорем -->
